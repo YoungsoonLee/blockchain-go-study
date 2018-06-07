@@ -1,15 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"strconv"
-
 	"github.com/YoungsoonLee/blockchain-go/block"
 )
 
 func main() {
 	bc := block.NewBlockchain() // make genesis block
+	defer bc.Db.Close()
 
+	cli := CLI{bc}
+	cli.Run()
+
+	/* old version
 	bc.AddBlock("Send 1 BTC to Ivan")
 	bc.AddBlock("Send 2 more BTC to Ivan")
 
@@ -23,4 +25,5 @@ func main() {
 
 		fmt.Println()
 	}
+	*/
 }
